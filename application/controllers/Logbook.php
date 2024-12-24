@@ -93,7 +93,7 @@ class Logbook extends CI_Controller {
 		$data['logbook'] = $this->m_logbook->get_all_logbook_by_id_user($id_user)->result_array();
 		// $data['logbook1'] = $this->m_logbook->get_logbook_by_status1($id_user)->result_array();
 		// $data['logbook2'] = $this->m_logbook->get_logbook_by_status2($id_user)->result_array();
-        $data['total_logbooks'] = $this->m_logbook->count_total_logbooks();
+        // $data['total_logbooks'] = $this->m_logbook->count_total_logbooks();
 		$data['ppnpn'] = $this->m_user->get_ppnpn_by_id($this->session->userdata('id_user'))->row_array();
 		$data['jenis_kelamin'] = $this->m_jenis_kelamin->get_all_jenis_kelamin()->result_array();
 		$data['ppnpn_data'] = $this->m_user->get_ppnpn_by_id($this->session->userdata('id_user'))->result_array();
@@ -104,6 +104,22 @@ class Logbook extends CI_Controller {
 			$this->session->set_flashdata('loggin_err','loggin_err');
 			redirect('Login/index');
 
+		}
+	}
+
+    public function view_sekretariat()
+	{
+		if ($this->session->userdata('logged_in') == true AND ($this->session->userdata('id_user_level') == 6 )) {
+
+			$data['logbook'] = $this->m_logbook->get_all_logbook_by_id_user($this->session->userdata('id_user'))->result_array();
+			$data['pegawai'] = $this->m_user->get_pegawai_by_id($this->session->userdata('id_user'))->row_array();
+			$data['jenis_kelamin'] = $this->m_jenis_kelamin->get_all_jenis_kelamin()->result_array();
+			$data['pegawai_data'] = $this->m_user->get_pegawai_by_id($this->session->userdata('id_user'))->result_array();
+			$this->load->view('sekretariat/logbook', $data);
+
+		} else {
+			$this->session->set_flashdata('loggin_err','loggin_err');
+			redirect('Login/index');
 		}
 	}
 	

@@ -104,7 +104,7 @@
 							data-toggle="dropdown"
 						>
 							<span class="user-icon">
-								<img src="<?= base_url();?>assets/images/photo1.jpg" alt="" />
+								<img src="<?= base_url();?>assets/images/account.jpg" alt="" />
 							</span>
 							<span class="user-name"><?=$this->session->userdata('username');?></span>
 						</a>

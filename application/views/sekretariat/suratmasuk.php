@@ -47,9 +47,9 @@
                             </nav>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" id="ajukanSuratmasukButton">
+                            <a href="<?php echo base_url('Form_suratmasuk/view_sekretariat'); ?>" class="btn btn-primary">
                                 Tambah Surat Masuk
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -63,6 +63,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Status</th>
                                     <th>Sifat</th>
                                     <th>Indeks</th>
                                     <th>Perihal</th>
@@ -71,7 +72,6 @@
                                     <th>Tanggal Surat</th>
                                     <th>Tanggal Diterima</th>
                                     <th>File</th>
-                                    <th>Status</th>
                                     <th>Diteruskan</th>
                                     <th>Isi Disposisi</th>
                                     <th>Catatan</th>
@@ -85,6 +85,7 @@
                                     $no++;
                                     $id_suratmasuk = $i['id_suratmasuk'];
                                     $id_user = $i['id_user'];
+                                    $id_status_surat = $i['id_status_surat'];
                                     $sifat = $i['sifat'];
                                     $indeks = $i['indeks'];
                                     $perihal = $i['perihal'];
@@ -93,13 +94,19 @@
                                     $tgl_surat = $i['tgl_surat'];
                                     $tgl_diterima = $i['tgl_diterima'];
                                     $file = $i['file'];
-                                    $id_status_surat = $i['id_status_surat'];
                                     $diteruskan = $i['diteruskan'];
                                     $isi_disposisi = $i['isi_disposisi'];
                                     $catatan = $i['catatan'];
                                 ?>
                                 <tr>
                                     <td class="table-plus"><?= $no ?></td>
+                                    <td class="table-plus">
+                                        <?php if($id_status_surat == 1) { ?>
+                                            <a href="#" class="btn btn-warning btn-sm" data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
+                                        <?php } elseif($id_status_surat == 2) { ?>
+                                            <a href="#" class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Surat Didisposisikan</a>
+                                        <?php } ?>
+                                    </td>
                                     <td><?= $sifat ?></td>
                                     <td><?= $indeks ?></td>
                                     <td><?= $perihal ?></td>
@@ -124,13 +131,7 @@
                                             }
                                         }
                                     </script>
-                                    <td class="table-plus">
-                                        <?php if($id_status_surat == 1) { ?>
-                                            <a href="#" class="btn btn-info btn-sm" data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
-                                        <?php } elseif($id_status_surat == 2) { ?>
-                                            <a href="#" class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Surat Didisposisikan</a>
-                                        <?php } ?>
-                                    </td>
+                                    
                                     <td><?php if(empty($diteruskan)) { ?>
                                         <a href="#" class="btn btn-danger btn-sm">
                                             Belum Ada

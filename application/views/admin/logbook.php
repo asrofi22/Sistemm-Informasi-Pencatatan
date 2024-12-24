@@ -116,6 +116,9 @@
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detail<?= $id_log ?>">
                                                     <i class="icon-copy bi bi-eye"></i>
                                                 </button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?= $id_log ?>">
+                                                    <i class="icon-copy bi bi-trash"></i>
+                                                </button>
                                             </div>
                                             <!-- <div>
                                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#setuju<?= $id_log ?>">
@@ -125,6 +128,35 @@
                                         </div>
                                     </td>  
                                 </tr>
+
+                                <!-- Modal Hapus Logbook -->
+                                <div class="modal fade" id="hapus<?= $id_log ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Logbook Harian</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="<?php echo base_url()?>Logbook/hapus_logbook_admin" method="post" enctype="multipart/form-data">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="hidden" name="id_log" value="<?php echo $id_log?>" />
+                                                            <input type="hidden" name="id_user" value="<?php echo $id_user?>" />
+                                                            <p>Apakah kamu yakin ingin menghapus data ini?</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger ripple" data-dismiss="modal">Tidak</button>
+                                                        <button type="submit" class="btn btn-success ripple save-category">Ya</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Modal Detail logbook -->
                                 <div class="modal fade" id="detail<?= $id_log ?>" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">

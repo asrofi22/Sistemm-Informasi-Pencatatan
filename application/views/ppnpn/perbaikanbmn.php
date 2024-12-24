@@ -28,9 +28,9 @@
                             </nav>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary" id="ajukanPerbaikanbmnButton">
+                            <a href="<?php echo base_url('Form_perbaikanbmn/view_ppnpn'); ?>" class="btn btn-primary">
                                 Ajukan Perbaikan BMN
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -45,18 +45,17 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">No</th>
-                                    
                                     <th>Tanggal Diajukan</th>
-                                    <th>Nama Lengkap</th>
-                                                <th>Nama Barang</th>
-                                                <th>Spesifikasi Barang</th>
-                                                <th>Lokasi Barang</th>
-                                                <th>Kerusakan</th>
-                                                
-                                                <th>Status Pengajuan</th>
-                                                <th>Alasan Verifikasi</th>
-                                                <th>Status Perbaikan</th>
-                                                <th>Note</th>
+                                    <th>Status Pengajuan</th>
+                                    <!-- <th>Nama Pengaju</th> -->
+                                    <th>Nama Barang</th>
+                                    <th>Spesifikasi</th>
+                                    <th>Lokasi Barang</th>
+                                    <th>Kerusakan</th>
+                                    <th>Alasan Verifikasi</th>
+                                    <th>Status Perbaikan</th>
+                                    <th>Estimasi</th>
+                                    <th>Note</th>
                                     <th class="datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -68,33 +67,35 @@
                                     $id_perbaikanbmn = $i['id_perbaikanbmn'];
                                     $id_user = $i['id_user'];
                                     $tgl_diajukan = $i['tgl_diajukan'];
-                                    $nama_lengkap = $i['nama_lengkap'];
+                                    $id_status_perbaikanbmn = $i['id_status_perbaikanbmn'];
+                                    // $nama_lengkap = $i['nama_lengkap'];
                                     $nama_brg = $i['nama_brg'];
                                     $spesifikasi_brg = $i['spesifikasi_brg'];
                                     $lokasi_brg = $i['lokasi_brg'];
                                     $kerusakan = $i['kerusakan'];
-                                    $id_status_perbaikanbmn = $i['id_status_perbaikanbmn'];
                                     $alasan_verifikasi = $i['alasan_verifikasi'];
                                     $id_status_perbaikan = $i['id_status_perbaikan'];
+                                    $estimasi = $i['estimasi'];
                                     $verifikasi_kaurrt = $i['verifikasi_kaurrt'];
                                 ?>
                                 <tr>
                                     <td class="table-plus"><?= $no ?></td>
                                     <td><?= $tgl_diajukan ?></td>
-                                    <td><?= $nama_lengkap ?></td>
-                                    <td><?= $nama_brg ?></td>
-                                    <td><?= $spesifikasi_brg ?></td>
-                                    <td><?= $lokasi_brg ?></td>
-                                    <td><?= $kerusakan ?></td>
                                     <td class="table-plus">
                                         <?php if($id_status_perbaikanbmn == 1) { ?>
-                                            <a href="#" class="btn btn-info btn-sm" data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
+                                            <a href="#" class="btn btn-warning btn-sm" data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
                                         <?php } elseif($id_status_perbaikanbmn == 2) { ?>
                                             <a href="#" class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Ajuan Diterima</a>
                                         <?php } elseif($id_status_perbaikanbmn == 3) { ?>
                                             <a href="#" class="btn btn-danger btn-sm" data-target="#edit_data_pegawai">Ajuan Ditolak</a>
                                         <?php } ?>
                                     </td>
+                                    <!-- <td><?= $nama_lengkap ?></td> -->
+                                    <td><?= $nama_brg ?></td>
+                                    <td><?= $spesifikasi_brg ?></td>
+                                    <td><?= $lokasi_brg ?></td>
+                                    <td><?= $kerusakan ?></td>
+                                    
                                     <td>
                                         <?php if($alasan_verifikasi == NULL) { ?>
                                             <a href="#" class="btn btn-danger btn-sm">Belum Ada</a>
@@ -114,6 +115,13 @@
                                         <?php } ?>
                                     </td>
                                     <td>
+                                        <?php if($estimasi == NULL) { ?>
+                                            <a href="#" class="btn btn-danger btn-sm">Tidak Ada</a>
+                                        <?php } else { ?>
+                                            <?= $estimasi ?>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
                                         <?php if($verifikasi_kaurrt == NULL) { ?>
                                             <a href="#" class="btn btn-danger btn-sm">Tidak Ada</a>
                                         <?php } else { ?>
@@ -126,7 +134,7 @@
                                         </a>
                                     </td>
                                 </tr>
-
+                                
                                 <!-- Modal Hapus Perbaikan bmn -->
                                 <div class="modal fade" id="hapus<?= $id_perbaikanbmn ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -138,7 +146,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="<?php echo base_url()?>Perbaikanbmn/hapus_perbaikanbmn" method="post">
+                                                <form action="<?php echo base_url()?>Perbaikanbmn/hapus_perbaikanbmn_ppnpn" method="post">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <input type="hidden" name="id_perbaikanbmn" value="<?php echo $id_perbaikanbmn?>" />
@@ -235,7 +243,7 @@
                             success: function (response) {
                                 // Jika pengiriman formulir berhasil, arahkan ke WhatsApp
                                 var message = encodeURIComponent("Saya telah mengajukan perbaikan BMN di sistem FrenSIP, mohon untuk ditindak lanjuti");
-                                var phoneNumber = "+6287817889296"; // Nomor telepon dengan kode negara Indonesia
+                                var phoneNumber = "+6281273071000"; // Nomor telepon dengan kode negara Indonesia
                                 var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + message;
                                 window.location.href = whatsappUrl;
                             },

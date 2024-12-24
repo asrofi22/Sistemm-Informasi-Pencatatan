@@ -67,15 +67,15 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
-                                <h4>Profile</h4>
+                                <h4>Profil</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="index.html">Home</a>
+                                        <a href="<?= base_url();?>Dashboard/dashboard_admin">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Profile
+                                        Profil
                                     </li>
                                 </ol>
                             </nav>
@@ -98,7 +98,7 @@
                                             $nip = $i['nip'];
                                             $unit_kerja = $i['unit_kerja'];
                                             $jabatan = $i['jabatan'];
-                                            $masa_kerja = $i['masa_kerja'];
+                                            // $masa_kerja = $i['masa_kerja'];
                                             $jabatan = $i['jabatan'];
                                             $unit_kerja = $i['unit_kerja'];
 
@@ -112,7 +112,7 @@
                                 <a href="#" data-toggle="modal" data-target="#editPhotoModal" class="edit-avatar">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <img src="<?= base_url();?>assets/images/photo1.jpg" alt="" class="avatar-photo"/>
+                                <img src="<?= base_url();?>assets/images/account.jpg" alt="" class="avatar-photo"/>
                             </div>
                             <h5 class="text-center h5 mb-0"><?= $i['nama_lengkap'] ?></h5>
                             <p class="text-center text-muted font-14"><?= $i['jabatan'] ?></p>
@@ -140,10 +140,10 @@
                                         <span>Jabatan:</span>
                                         <?= $i['jabatan'] ?>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <span>Masa Kerja:</span>
                                         <?= $i['masa_kerja'] ?> 
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
 
@@ -152,7 +152,7 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editModalLabel">Edit Profile</h5>
+                                            <h5 class="modal-title" id="editModalLabel">Lengkapi data akun</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -182,10 +182,10 @@
                                                         <input type="text" class="form-control" id="nip" name="nip" aria-describedby="nip" value="<?=$i['nip']?>" required>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label for="masa_kerja">Masa Kerja</label>
                                                     <input type="text" class="form-control" id="masa_kerja" name="masa_kerja" aria-describedby="masa_kerja" value="<?=$i['masa_kerja']?>" required>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group">
                                                     <label for="jabatan">Jabatan</label>
                                                     <input type="text" class="form-control" id="jabatan" name="jabatan" aria-describedby="jabatan" value="<?=$i['jabatan']?>" required>

@@ -54,12 +54,12 @@
 		<div class="left-side-bar">
 			<div class="brand-logo">
 				<a href="<?= base_url();?>Dashboard/dashboard_kaurrt" class="nav-link">
-					<img src="<?= base_url();?>assets/images/logobsip2.png" alt="" class="dark-logo" style="height: 100px; width: auto;"/>
-					<img
+					<img src="<?= base_url();?>assets/images/bsiplogo.png" alt="" class="dark-logo" style="height: 100px; width: auto;"/>
+					<!-- <img
 						src="<?= base_url();?>assets/images/logobsip3.jpg"
 						alt=""
 						class="light-logo" class="dark-logo" style="height: 100px; width: auto;"
-					/>
+					/> -->
 				</a>
 				<div class="close-sidebar" data-toggle="left-sidebar-close">
 					<i class="ion-close-round"></i>

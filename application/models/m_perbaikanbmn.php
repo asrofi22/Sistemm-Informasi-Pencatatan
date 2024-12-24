@@ -70,10 +70,10 @@ class M_Perbaikanbmn extends CI_Model
             return false;
     }
 
-    public function confirm_status_perbaikan($id_perbaikanbmn, $id_status_perbaikan, $verifikasi_kaurrt)
+    public function confirm_status_perbaikan($id_perbaikanbmn, $id_status_perbaikan, $estimasi, $verifikasi_kaurrt)
     {
         $this->db->trans_start();
-        $this->db->query("UPDATE perbaikanbmn SET id_status_perbaikan='$id_status_perbaikan', verifikasi_kaurrt='$verifikasi_kaurrt' WHERE id_perbaikanbmn='$id_perbaikanbmn'");
+        $this->db->query("UPDATE perbaikanbmn SET id_status_perbaikan='$id_status_perbaikan', estimasi='$estimasi', verifikasi_kaurrt='$verifikasi_kaurrt' WHERE id_perbaikanbmn='$id_perbaikanbmn'");
         $this->db->trans_complete();
         if($this->db->trans_status()==true)
             return true;

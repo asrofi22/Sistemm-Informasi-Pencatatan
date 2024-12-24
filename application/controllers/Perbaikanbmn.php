@@ -87,7 +87,7 @@ class Perbaikanbmn extends CI_Controller {
 			$lokasi_brg = $this->input->post("lokasi_brg");
 			$kerusakan = $this->input->post("kerusakan");
 			$tgl_diajukan = date('Y-m-d H:i:s');
-			$id_perbaikanbmn = md5($id_user.$nama_brg.$lokasi_brg);
+			$id_perbaikanbmn = md5($id_user.$nama_brg.$kerusakan);
 			$id_status_perbaikanbmn = 1;
 			$id_status_perbaikan = 1;
 
@@ -170,6 +170,23 @@ class Perbaikanbmn extends CI_Controller {
 		}
 
 		redirect('Perbaikanbmn/view_pegawai/'.$id_user);
+	}
+
+	public function hapus_perbaikanbmn_ppnpn()
+	{
+
+		$id_perbaikanbmn = $this->input->post("id_perbaikanbmn");
+		$id_user = $this->input->post("id_user");
+
+		$hasil = $this->m_perbaikanbmn->delete_perbaikanbmn($id_perbaikanbmn);
+		
+		if($hasil==false){
+			$this->session->set_flashdata('eror_hapus','eror_hapus');
+		}else{
+			$this->session->set_flashdata('hapus','hapus');
+		}
+
+		redirect('Perbaikanbmn/view_ppnpn/'.$id_user);
 	}
 
 	public function proses_perbaikanbmn_pegawai2()
@@ -299,6 +316,23 @@ class Perbaikanbmn extends CI_Controller {
 		redirect('Perbaikanbmn/view_admin');
 	}
 
+	public function hapus_perbaikanbmn_kaurrt()
+	{
+
+		$id_perbaikanbmn = $this->input->post("id_perbaikanbmn");
+		$id_user = $this->input->post("id_user");
+
+		$hasil = $this->m_perbaikanbmn->delete_perbaikanbmn($id_perbaikanbmn);
+		
+		if($hasil==false){
+			$this->session->set_flashdata('eror_hapus','eror_hapus');
+		}else{
+			$this->session->set_flashdata('hapus','hapus');
+		}
+
+		redirect('Perbaikanbmn/view_kaurrt');
+	}
+
 	public function edit_perbaikanbmn_admin()
 	{
 		$id_perbaikanbmn = $this->input->post("id_perbaikanbmn");
@@ -399,9 +433,10 @@ class Perbaikanbmn extends CI_Controller {
 	{
 		$id_perbaikanbmn = $this->input->post("id_perbaikanbmn");
 		$id_user = $this->input->post("id_user");
+		$estimasi = $this->input->post("estimasi");
 		$verifikasi_kaurrt = $this->input->post("verifikasi_kaurrt");
 
-		$hasil = $this->m_perbaikanbmn->confirm_status_perbaikan($id_perbaikanbmn, $id_status_perbaikan, $verifikasi_kaurrt);
+		$hasil = $this->m_perbaikanbmn->confirm_status_perbaikan($id_perbaikanbmn, $id_status_perbaikan, $estimasi, $verifikasi_kaurrt);
 
 		if ($hasil == false) {
 			$this->session->set_flashdata('eror_input', 'eror_input');

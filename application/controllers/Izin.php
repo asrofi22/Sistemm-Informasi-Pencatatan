@@ -202,6 +202,22 @@ class Izin extends CI_Controller {
 		}
 	}
 
+	public function view_kaurrt()
+	{
+		if ($this->session->userdata('logged_in') == true AND ($this->session->userdata('id_user_level') == 4 )) {
+
+			$data['izin'] = $this->m_izin->get_all_izin_by_id_user($this->session->userdata('id_user'))->result_array();
+			$data['pegawai'] = $this->m_user->get_pegawai_by_id($this->session->userdata('id_user'))->row_array();
+			$data['jenis_kelamin'] = $this->m_jenis_kelamin->get_all_jenis_kelamin()->result_array();
+			$data['pegawai_data'] = $this->m_user->get_pegawai_by_id($this->session->userdata('id_user'))->result_array();
+			$this->load->view('kaurrt/izin', $data);
+
+		} else {
+			$this->session->set_flashdata('loggin_err','loggin_err');
+			redirect('Login/index');
+		}
+	}
+
 
 	public function proses_izin_ppnpn()
 	{

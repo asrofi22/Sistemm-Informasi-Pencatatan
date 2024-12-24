@@ -75,7 +75,7 @@
                                     <th>Diteruskan</th>
                                     <th>Isi Disposisi</th>
                                     <th>Catatan</th>
-                                    <th>Aksi</th>
+                                    <!-- <th>Aksi</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -155,9 +155,9 @@
                                         <?= $catatan ?>
                                     <?php } ?>
                                     </td>
-                                    <td class="table-plus">
+                                    <!-- <td class="table-plus">
                                         <a href="#" data-toggle="modal" data-target="#hapus<?= $id_suratmasuk ?>" class="btn btn-danger"><i class="icon-copy bi bi-trash"></i></a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <!-- Modal Hapus suratmasuk -->
                                 <div class="modal fade" id="hapus<?= $id_suratmasuk ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

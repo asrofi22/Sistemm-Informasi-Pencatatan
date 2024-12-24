@@ -1,114 +1,77 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <?php $this->load->view("ppnpn/components/header.php") ?>
-        <style>
-			.icon-img {
-				width: 100px; /* Sesuaikan dengan ukuran yang Anda inginkan */
-				height: 100px; /* Sesuaikan dengan ukuran yang Anda inginkan */
-				object-fit: contain;
-			}
+<head>
+    <?php $this->load->view("ppnpn/components/header.php") ?>
+    <style>
+        .icon-img {
+            width: 100px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+            height: 100px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+            object-fit: contain;
+        }
 
-			/* .progress-data {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100%;
-				width: 100%;
-			} */
+        .text-center {
+            text-align: center;
+        }
+    </style>
 
-			/* .widget-style1 {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-			} */
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>src/plugins/fullcalendar/fullcalendar.css"/>
+</head>
+<body>
+    <!-- Navbar -->
+    <?php $this->load->view("ppnpn/components/navbar.php") ?>
+    <!-- /.navbar -->
 
-			.text-center {
-				text-align: center;
-			}
-		</style>
+    <!-- Main Sidebar Container -->
+    <?php $this->load->view("ppnpn/components/sidebar.php") ?>
 
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="<?= base_url();?>src/plugins/fullcalendar/fullcalendar.css"
-		/>
-	</head>
-	<body>
-		<!-- Navbar -->
-        <?php $this->load->view("ppnpn/components/navbar.php") ?>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <?php $this->load->view("ppnpn/components/sidebar.php") ?>
-
-		<div class="main-container">
-			<div class="pd-ltr-20">
-				<div class="card-box pd-20 height-100-p mb-30">
-					<div class="row align-items-center">
-						<div class="col-md-4">
-							<img src="<?= base_url();?>assets/images/banner-img.png" alt="" />
-						</div>
-						<div class="col-md-8">
-							<h4 class="font-20 weight-500 mb-10 text-capitalize">
-								Selamat Datang!
-								<div class="weight-600 font-30 text-blue"><?=$this->session->userdata('username');?></div>
-							</h4>
-							
-						</div>
-					</div>
-				</div>
-				<div class="row">
-				
-					<div class="col-xl-3 mb-30">
-						<a href="<?=base_url();?>Logbook/view_ppnpn/<?= $this->session->userdata('id_user'); ?>">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
-								<div class="progress-data">
-								<img src="<?= base_url();?>assets/images/logbookic.png" alt="Logbook Chart" class="icon-img"/>
-								</div>
-								<div class="widget-data">
-								<div class="h4 mb-0">Logbook PPNPN</div>
-									<div class="weight-600 font-14">harian | bulanan</div>
-								</div>
-								<!-- <a href="<?=base_url();?>Logbook/view_ppnpn" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a> -->
-							</div>
-						</div>
-						</a>
-					</div>
-					<!-- <div class="col-xl-3 mb-30">
-						<a href="<?=base_url();?>Logbookbulanan/view_ppnpn/<?= $this->session->userdata('id_user'); ?>">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
-								<div class="progress-data">
-								<img src="<?= base_url();?>assets/images/logbookic.png" alt="Logbook Chart" class="icon-img"/>
-								</div>
-								<div class="widget-data">
-									<div class="h4 mb-0"><?=$logbook['total_logbook']?></div>
-									<div class="weight-600 font-14">Logbook bulanan PPNPN</div>
-								</div>
-								<a href="<?=base_url();?>Logbook/view_ppnpn" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-						</a>
-					</div> -->
-					<div class="col-xl-3 mb-30">
-						<a href="<?=base_url();?>Izin/view_ppnpn">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
+    <div class="main-container">
+        <div class="pd-ltr-20">
+            <div class="card-box pd-20 height-100-p mb-30">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <img src="<?= base_url();?>assets/images/banner-img.png" alt=""/>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                            Selamat Datang!
+                            <div class="weight-600 font-30 text-blue"><?=$this->session->userdata('username');?></div>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 mb-30">
+                    <a href="<?=base_url();?>Logbook/view_ppnpn/<?= $this->session->userdata('id_user'); ?>">
+                        <div class="card-box height-100-p widget-style1">
+                            <div class="d-flex flex-wrap align-items-center">
+                                <div class="progress-data">
+                                    <img src="<?= base_url();?>assets/images/logbookic.png" alt="Logbook Chart" class="icon-img"/>
+                                </div>
+                                <div class="widget-data">
+                                    <div class="h4 mb-0">Logbook PPNPN</div>
+                                    <div class="weight-600 font-14">harian | bulanan</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+				<div class="col-xl-3 mb-30">
+					<a href="<?=base_url();?>Izin/view_ppnpn">
+                        <div class="card-box height-100-p widget-style1">
+                            <div class="d-flex flex-wrap align-items-center">
 								<div class="progress-data">
 								<img src="<?= base_url();?>assets/images/izinic.png" alt="Izin Logo" class="icon-img"/>
 								</div>
 								<div class="widget-data">
 									<div class="h4 mb-0"><?=$izin['total_izin']?></div>
 									<div class="weight-600 font-14">Izin Keluar Kantor</div>
-								</div>
-								<!-- <a href="<?=base_url();?>Logbook/view_pegawai" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a> -->
-							</div>
-						</div>
-						</a>
-					</div>
+									</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+					
+					
 					<div class="col-xl-3 mb-30">
 						<a href="<?=base_url();?>Perbaikanbmn/view_ppnpn">
 						<div class="card-box height-100-p widget-style1">

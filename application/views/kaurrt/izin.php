@@ -28,9 +28,9 @@
                             </nav>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary" id="ajukanIzinButton">
+                            <a href="<?php echo base_url('Form_izin/view_kaurrt'); ?>" class="btn btn-primary">
                                 Ajukan Izin
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

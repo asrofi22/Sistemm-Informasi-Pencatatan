@@ -46,6 +46,11 @@
 									</ol>
 								</nav>
 							</div>
+                            <div class="col-md-6 col-sm-12 text-right">
+                            <a href="<?php echo base_url('Form_perbaikanbmn/view_admin'); ?>" class="btn btn-primary">
+                                Ajukan Perbaikan BMN
+                            </a>
+                        </div>
                             </div>
                             </div>
                 <!-- Sample Table -->
@@ -59,15 +64,16 @@
                         <tr>
                             <th class="table-plus datatable-nosort">No</th>
                             <th>Tanggal Diajukan</th>
+                            <th>Status Pengajuan</th>
                             <th>Nama Lengkap</th>
                             <th>Nama Barang</th>
-                            <th>Spesifikasi Barang</th>
+                            <th>Spesifikasi</th>
                             <th>Lokasi Barang</th>
                             <th>Kerusakan</th>
                             <!-- <th>Tanggal Diajukan</th> -->
-                            <th>Status Pengajuan</th>
                             <th>Alasan Verifikasi</th>
                             <th>Status Perbaikan</th>
+                            <th>Estimasi</th>
                             <th>Note</th>
                             <th class="datatable-nosort">Aksi</th>
                         </tr>
@@ -81,34 +87,36 @@
                                 $id_perbaikanbmn = $i['id_perbaikanbmn'];
                                 $id_user = $i['id_user'];
                                 $tgl_diajukan = $i['tgl_diajukan'];
+                                $id_status_perbaikanbmn = $i['id_status_perbaikanbmn'];
                                 $nama_lengkap = $i['nama_lengkap'];
                                 $nama_brg = $i['nama_brg'];
                                 $spesifikasi_brg = $i['spesifikasi_brg'];
                                 $lokasi_brg = $i['lokasi_brg'];
                                 $kerusakan = $i['kerusakan'];
-                                $id_status_perbaikanbmn = $i['id_status_perbaikanbmn'];
                                 $alasan_verifikasi = $i['alasan_verifikasi'];
                                 $id_status_perbaikan = $i['id_status_perbaikan'];
+                                $estimasi = $i['estimasi'];
                                 $verifikasi_kaurrt = $i['verifikasi_kaurrt'];
 
                                 ?>
                                 <tr>
                                     <td class="table-plus"><?= $no ?></td>
                                     <td><?= $tgl_diajukan ?></td>
-                                    <td><?= $nama_lengkap ?></td>
-                                    <td><?= $nama_brg ?></td>
-                                    <td><?= $spesifikasi_brg ?></td>
-                                    <td><?= $lokasi_brg ?></td>
-                                    <td><?= $kerusakan ?></td>
                                     <td class="table-plus">
                                         <?php if($id_status_perbaikanbmn == 1) { ?>
-                                            <a href="#" class="btn btn-info btn-sm"  data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
+                                            <a href="#" class="btn btn-warning btn-sm"  data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
                                         <?php } elseif($id_status_perbaikanbmn == 2) { ?>
                                             <a href="#"  class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Ajuan Diterima</a>
                                         <?php } elseif($id_status_perbaikanbmn == 3) { ?>
                                             <a href="#" class="btn btn-danger btn-sm" data-target="#edit_data_pegawai">Ajuan Ditolak</a>
                                         <?php } ?>
                                     </td>
+                                    <td><?= $nama_lengkap ?></td>
+                                    <td><?= $nama_brg ?></td>
+                                    <td><?= $spesifikasi_brg ?></td>
+                                    <td><?= $lokasi_brg ?></td>
+                                    <td><?= $kerusakan ?></td>
+                                    
                                     <td><?php if($alasan_verifikasi == NULL) { ?>
                                         <a href="#" class="btn btn-danger btn-sm">
                                             Belum Ada
@@ -119,13 +127,21 @@
                                     </td>
                                     <td class="table-plus">
                                         <?php if($id_status_perbaikan == 1) { ?>
-                                            <a href="#" class="btn btn-info btn-sm"  data-target="#edit_data_pegawai">Belum Disetujui</a>
+                                            <a href="#" class="btn btn-danger btn-sm"  data-target="#edit_data_pegawai">Belum Disetujui</a>
                                         <?php } elseif($id_status_perbaikan == 2) { ?>
                                             <a href="#"  class="btn btn-warning btn-sm" data-target="#edit_data_pegawai">Belum Dikerjakan</a>
                                         <?php } elseif($id_status_perbaikan == 3) { ?>
                                             <a href="#" class="btn btn-info btn-sm" data-target="#edit_data_pegawai">Sedang Dikerjakan</a>
                                         <?php } elseif($id_status_perbaikan == 4) { ?>
                                             <a href="#" class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Sudah Dikerjakan</a>
+                                        <?php } ?>
+                                    </td>
+                                    <td><?php if($estimasi == NULL) { ?>
+                                        <a href="#" class="btn btn-danger btn-sm">
+                                            Tidak Ada
+                                        </a>
+                                        <?php } else {?>
+                                        <?=$estimasi?>
                                         <?php } ?>
                                     </td>
                                     <td><?php if($verifikasi_kaurrt == NULL) { ?>

@@ -62,6 +62,16 @@ class Suratmasuk extends CI_Controller {
         }
     }
 
+    public function view_kaurrt() {
+        if ($this->session->userdata('logged_in') == true AND $this->session->userdata('id_user_level') == 4) {
+            $data['suratmasuk'] = $this->m_suratmasuk->get_all_suratmasuk()->result_array();
+            $this->load->view('kaurrt/suratmasuk', $data);
+        } else {
+            $this->session->set_flashdata('loggin_err','loggin_err');
+            redirect('Login/index');
+        }
+    }
+
     public function proses_suratmasuk() {
         if ($this->session->userdata('logged_in') == true && $this->session->userdata('id_user_level') == 6) {
             $id_user = $this->input->post("id_user");

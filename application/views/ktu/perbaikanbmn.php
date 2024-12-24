@@ -59,15 +59,17 @@
                         <tr>
                             <th class="table-plus datatable-nosort">No</th>
                             <th>Tanggal Diajukan</th>
+                            <th>Status Ajuan</th>
                             <th>Nama Lengkap</th>
                             <th>Nama Barang</th>
                             <th>Spesifikasi Barang</th>
                             <th>Lokasi Barang</th>
                             <th>Kerusakan</th>
                             <!-- <th>Tanggal Diajukan</th> -->
-                            <th>Status Pengajuan</th>
+                            
                             <th>Alasan Verifikasi</th>
                             <th>Status Perbaikan</th>
+                            <th>Estimasi Pengerjaan</th>
                             <th>Note</th>
                             <th class="datatable-nosort">Aksi</th>
                         </tr>
@@ -81,34 +83,37 @@
                                 $id_perbaikanbmn = $i['id_perbaikanbmn'];
                                 $id_user = $i['id_user'];
                                 $tgl_diajukan = $i['tgl_diajukan'];
+                                $id_status_perbaikanbmn = $i['id_status_perbaikanbmn'];
                                 $nama_lengkap = $i['nama_lengkap'];
                                 $nama_brg = $i['nama_brg'];
                                 $spesifikasi_brg = $i['spesifikasi_brg'];
                                 $lokasi_brg = $i['lokasi_brg'];
                                 $kerusakan = $i['kerusakan'];
-                                $id_status_perbaikanbmn = $i['id_status_perbaikanbmn'];
+                               
                                 $alasan_verifikasi = $i['alasan_verifikasi'];
                                 $id_status_perbaikan = $i['id_status_perbaikan'];
+                                $estimasi = $i['estimasi'];
                                 $verifikasi_kaurrt = $i['verifikasi_kaurrt'];
 
                                 ?>
                                 <tr>
                                     <td class="table-plus"><?= $no ?></td>
                                     <td><?= $tgl_diajukan ?></td>
-                                    <td><?= $nama_lengkap ?></td>
-                                    <td><?= $nama_brg ?></td>
-                                    <td><?= $spesifikasi_brg ?></td>
-                                    <td><?= $lokasi_brg ?></td>
-                                    <td><?= $kerusakan ?></td>
                                     <td class="table-plus">
                                         <?php if($id_status_perbaikanbmn == 1) { ?>
-                                            <a href="#" class="btn btn-info btn-sm"  data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
+                                            <a href="#" class="btn btn-warning btn-sm"  data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
                                         <?php } elseif($id_status_perbaikanbmn == 2) { ?>
                                             <a href="#"  class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Ajuan Diterima</a>
                                         <?php } elseif($id_status_perbaikanbmn == 3) { ?>
                                             <a href="#" class="btn btn-danger btn-sm" data-target="#edit_data_pegawai">Ajuan Ditolak</a>
                                         <?php } ?>
                                     </td>
+                                    <td><?= $nama_lengkap ?></td>
+                                    <td><?= $nama_brg ?></td>
+                                    <td><?= $spesifikasi_brg ?></td>
+                                    <td><?= $lokasi_brg ?></td>
+                                    <td><?= $kerusakan ?></td>
+                                    
                                     <td><?php if($alasan_verifikasi == NULL) { ?>
                                         <a href="#" class="btn btn-danger btn-sm">
                                             Belum Ada
@@ -128,6 +133,14 @@
                                             <a href="#" class="btn btn-success btn-sm" data-target="#edit_data_pegawai">Sudah Dikerjakan</a>
                                         <?php } ?>
                                     </td>
+                                    <td><?php if($estimasi == NULL) { ?>
+                                        <a href="#" class="btn btn-danger btn-sm">
+                                            Tidak Ada
+                                        </a>
+                                        <?php } else {?>
+                                        <?=$estimasi?>
+                                        <?php } ?>
+                                    </td>
                                     <td><?php if($verifikasi_kaurrt == NULL) { ?>
                                         <a href="#" class="btn btn-danger btn-sm">
                                             Tidak Ada
@@ -137,51 +150,110 @@
                                         <?php } ?>
                                     </td>
                                     <td class="table-plus">
-                                        <!-- <div class="table-responsive"> -->
-                                            <!-- <div class="table table-striped table-hover"> -->
-                                                <a href="#" data-toggle="modal"  data-target="#modalAction"
-                                                                data-id-perbaikanbmn="<?= $id_perbaikanbmn ?>"
-                                                                data-id-user="<?= $id_user ?>" class="btn btn-primary">aksi</a>
-                                            <!-- </div> -->
-                                        </div>
+                                        <a href="#" data-toggle="modal" data-target="#setuju<?= $id_perbaikanbmn ?>" class="btn btn-primary btn-sm"><i class="icon-copy bi bi-check"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#tidak_setuju<?= $id_perbaikanbmn ?>" class="btn btn-danger btn-sm"><i class="icon-copy bi bi-x"></i></a>
                                     </td>
                                 </tr>
 
-                                <!-- Modal Setuju/Tidak Setuju -->
-    <div class="modal fade" id="modalAction" tabindex="-1" role="dialog" aria-labelledby="modalActionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalActionLabel">Setujui/Tolak Data Ajuan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="modalActionForm" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="hidden" name="id_perbaikanbmn" id="id_perbaikanbmn" />
-                            <input type="hidden" name="id_user" id="id_user" />
-                            <label for="action">Pilih Aksi:</label>
-                            <select class="form-control" id="action" name="action">
-                                <option value="setuju" id="setuju<?= $id_perbaikanbmn?>" >Setujui</option>
-                                <option value="tidak_setuju" id="tidak_setuju<?= $id_perbaikanbmn?>" >Tolak</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="alasan_verifikasi">Alasan:</label>
-                            <textarea class="form-control" id="alasan_verifikasi" name="alasan_verifikasi" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer justify-content-center"> <!-- Modified -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                                <!-- Modal Setuju Perbaikan BMN -->
+                                <div class="modal fade" id="setuju<?= $id_perbaikanbmn ?>" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Setujui Ajuan Perbaikan BMN
+                                                                
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <form id="form-setuju<?= $id_perbaikanbmn ?>"
+                                                                action="<?php echo base_url()?>Perbaikanbmn/acc_perbaikanbmn_ktu/2"
+                                                                method="post" enctype="multipart/form-data">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <input type="hidden" name="id_perbaikanbmn"
+                                                                            value="<?php echo $id_perbaikanbmn?>" />
+                                                                        <input type="hidden" name="id_user"
+                                                                            value="<?php echo $id_user?>" />
+                                                                        <p>Apakah anda yakin akan menyetujui pengajuan perbaikan BMN
+                                                                            ini?</i></b></p>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="exampleFormControlTextarea1">Alasan Verifikasi</label>
+                                                                            <textarea class="form-control"
+                                                                                id="alasan_verifikasi"
+                                                                                name="alasan_verifikasi"
+                                                                                rows="3"></textarea>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <!-- <button type="button" class="btn btn-danger ripple"
+                                                                        data-dismiss="modal">Tidak</button> -->
+                                                                    <button type="submit"
+                                                                        class="btn btn-success ripple save-category">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal Tidak Setuju Perbaikan BMN -->
+                                            <div class="modal fade" id="tidak_setuju<?= $id_perbaikanbmn ?>" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Tolak Ajuan Perbaikan BMN
+                                                                
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <form
+                                                                action="<?php echo base_url()?>Perbaikanbmn/acc_perbaikanbmn_ktu/3"
+                                                                method="post" enctype="multipart/form-data">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <input type="hidden" name="id_perbaikanbmn"
+                                                                            value="<?php echo $id_perbaikanbmn?>" />
+                                                                        <input type="hidden" name="id_user"
+                                                                            value="<?php echo $id_user?>" />
+
+                                                                        <p>Apakah Anda yakin akan menolak ajuan perbaikan BMN
+                                                                            ini?</i></b></p>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="exampleFormControlTextarea1">Alasan Verifikasi</label>
+                                                                            <textarea class="form-control"
+                                                                                id="alasan_verifikasi"
+                                                                                name="alasan_verifikasi"
+                                                                                rows="3"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <!-- <button type="button" class="btn btn-danger ripple"
+                                                                        data-dismiss="modal">Tidak</button> -->
+                                                                    <button type="submit"
+                                                                        class="btn btn-success ripple save-category">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <!-- Modal Edit Perbaikan BMN -->
                                             <div class="modal fade" id="edit<?= $id_perbaikanbmn ?>" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -305,169 +377,28 @@
     <script src="<?=base_url();?>src/plugins/datatables/js/dataTables.responsive.min.js"></script>
     <script src="<?=base_url();?>src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 
-    <!-- Modal Setuju/Tidak Setuju -->
-    <div class="modal fade" id="modalAction" tabindex="-1" role="dialog" aria-labelledby="modalActionLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalActionLabel">Setujui/Tolak Data Ajuan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="modalActionForm" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="hidden" name="id_perbaikanbmn" id="id_perbaikanbmn" />
-                            <input type="hidden" name="id_user" id="id_user" />
-                            <label for="action">Pilih Aksi:</label>
-                            <select class="form-control" id="action" name="action">
-                                <option value="setuju" id="setuju<?= $id_perbaikanbmn?>" >Setujui</option>
-                                <option value="tidak_setuju" id="tidak_setuju<?= $id_perbaikanbmn?>" >Tolak</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="alasan_verifikasi">Alasan:</label>
-                            <textarea class="form-control" id="alasan_verifikasi" name="alasan_verifikasi" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer justify-content-center"> <!-- Modified -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-    <!-- Modal Setuju/Tidak Setuju -->
-<div class="modal fade" id="modalAction" tabindex="-1" role="dialog" aria-labelledby="modalActionLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalActionLabel">Setujui/Tolak Data Ajuan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="modalActionForm" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="hidden" name="id_perbaikanbmn" id="id_perbaikanbmn" />
-                        <input type="hidden" name="id_user" id="id_user" />
-                        <label for="action">Pilih Aksi:</label>
-                        <select class="form-control" id="action" name="action">
-                            <option value="setuju">Setujui</option>
-                            <option value="tidak_setuju">Tolak</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="alasa_verifikasi">Alasan:</label>
-                        <textarea class="form-control" id="alasan_verifikasi" name="alasan_verifikasi" rows="3"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Ketika tombol "Submit" diklik
-    document.getElementById("btnSubmit").addEventListener("click", function() {
-        // Dapatkan nilai dari dropdown "Pilih Aksi"
-        var action = document.getElementById("action").value;
-        var alasan_verifikasi = document.getElementById("alasan_verifikasi").value;
-        
-        // Perbarui URL endpoint sesuai dengan aksi yang dipilih
-        var endpoint;
-        if (action === "setuju") {
-            endpoint = "<?php echo base_url()?>Perbaikanbmn/acc_perbaikanbmn_ktu/2";
-        } else if (action === "tidak_setuju") {
-            endpoint = "<?php echo base_url()?>Perbaikanbmn/acc_perbaikanbmn_ktu/3";
-        }
-        
-        // Perbarui atribut "action" pada formulir dengan URL endpoint yang baru
-        document.getElementById("modalActionForm").action = endpoint;
-
-        // Perbarui nilai dari input alasan
-        document.getElementById("alasan_verifikasi").value = alasan_verifikasi;
-        
-        // Kirim formulir
-        document.getElementById("modalActionForm").submit();
-    });
-</script>
-
-
-    <script>
-        $('#modalAction').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var id_perbaikanbmn = button.data('id-perbaikanbmn');
-            var id_user = button.data('id-user');
-            var modal = $(this);
-            modal.find('#id_perbaikanbmn').val(id_perbaikanbmn);
-            modal.find('#id_user').val(id_user);
-        });
-
-        $('#btnSubmit').click(function () {
-            $('#modalActionForm').submit();
-        });
-
-    </script>
-
-<script>
-    // Ketika tombol "Submit" diklik
-    document.getElementById("btnSubmit").addEventListener("click", function() {
-        // Dapatkan nilai dari dropdown "Pilih Aksi"
-        var action = document.getElementById("action").value;
-        var alasan_verifikasi = document.getElementById("alasan_verifikasi").value;
-        
-        // Perbarui URL endpoint sesuai dengan aksi yang dipilih
-        var endpoint;
-        if (action === "setuju") {
-            endpoint = "<?php echo base_url()?>Perbaikanbmn/acc_perbaikanbmn_ktu/2";
-        } else if (action === "tidak_setuju") {
-            endpoint = "<?php echo base_url()?>Perbaikanbmn/acc_perbaikanbmn_ktu/3";
-        }
-        
-        // Perbarui atribut "action" pada formulir dengan URL endpoint yang baru
-        document.getElementById("modalActionForm").action = endpoint;
-
-        // Perbarui nilai dari input alasan
-        document.getElementById("alasan_verifikasi").value = alasan_verifikasi;
-        
-        // Kirim formulir
-        document.getElementById("modalActionForm").submit();
-    });
-</script>
-
-
-    <script>
-        $('#modalAction').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var id_perbaikanbmn = button.data('id-perbaikanbmn');
-            var id_user = button.data('id-user');
-            var modal = $(this);
-            modal.find('#id_perbaikanbmn').val(id_perbaikanbmn);
-            modal.find('#id_user').val(id_user);
-        });
-
-        $('#btnSubmit').click(function () {
-            $('#modalActionForm').submit();
-        });
-
-    </script>
     <script>
         $(document).ready(function() {
             $('.data-table').DataTable({
                 responsive: true
             });
+
+            $(document).ready(function() {
+                // Ketika form modal setuju disubmit
+                $('#form-setuju<?= $id_perbaikanbmn ?>').submit(function(e) {
+                    e.preventDefault(); // Menghentikan pengiriman form bawaan
+
+                    // Kirim pesan ke nomor tujuan
+                    var pesan = "saya telah menyetujui data ajuan perbaikan BMN di sistem FrenSIP, mohon segera ditindak lanjuti";
+                    var nomor = "087817889296"; // Ganti dengan nomor yang sesuai
+
+                    // Redirect ke WhatsApp
+                    window.location.href = "whatsapp://send?phone=" + nomor + "&text=" + encodeURIComponent(pesan);
+                });
+            });
+
         });
     </script>
+
 </body>
 </html>

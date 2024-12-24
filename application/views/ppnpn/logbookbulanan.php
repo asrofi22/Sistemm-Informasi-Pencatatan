@@ -40,9 +40,9 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Data Logbook Bulanan PPNPN</h4>
-                        <button type="button" class="btn btn-sm btn-primary" id="ajukanLogbookbulananButton" data-toggle="modal" data-target="#formLogbookbulananModal">
-                            Tambah Logbook
-                        </button>
+                        <a href="<?php echo base_url('Form_logbookbulanan/view_ppnpn'); ?>" class="btn btn-primary">
+                                Tambah Logbook
+                            </a>
                     </div>
                     <div class="pb-20">
                         <table class="data-table table stripe hover nowrap">
@@ -55,6 +55,8 @@
                                     <th>File</th>
                                     <th>Status</th>
                                     <th>Nilai</th>
+                                    <th>Verifikasi</th>
+
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -72,6 +74,8 @@
                                     $file = $i['file'];
                                     $id_status_log = $i['id_status_log'];
                                     $nilai = $i['nilai'];
+                                    $verifikasi = $i['verifikasi'];
+
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
@@ -91,7 +95,7 @@
                                         <?php if($id_status_log == 1): ?>
                                             <div class="table-responsive">
                                                 <div class="table table-striped table-hover">
-                                                    <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
+                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_data_pegawai">Menunggu Konfirmasi</a>
                                                 </div>
                                             </div>
                                         <?php elseif($id_status_log == 2): ?>
@@ -108,6 +112,13 @@
                                             <a href="" class="btn btn-danger btn-sm">Belum dinilai</a>
                                         <?php else: ?>
                                             <?= $nilai ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if($verifikasi == NULL): ?>
+                                            <a href="" class="btn btn-danger btn-sm">Tidak Ada</a>
+                                        <?php else: ?>
+                                            <?= $verifikasi ?>
                                         <?php endif; ?>
                                     </td>
                                     <td class="align-middle">

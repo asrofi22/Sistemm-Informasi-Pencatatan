@@ -79,10 +79,10 @@ class M_user extends CI_Model
        return $this->db->trans_status();
     }
 
-    public function update_user_detail($id, $nama_lengkap, $id_jenis_kelamin, $no_telp, $nip, $masa_kerja, $jabatan, $unit_kerja)
+    public function update_user_detail($id, $nama_lengkap, $id_jenis_kelamin, $email, $no_telp, $nip, $masa_kerja, $jabatan, $unit_kerja)
     {
        $this->db->trans_start();
-       $this->db->query("UPDATE user SET nama_lengkap='$nama_lengkap', id_jenis_kelamin='$id_jenis_kelamin', no_telp='$no_telp', nip='$nip', masa_kerja='$masa_kerja', jabatan='$jabatan', unit_kerja='$unit_kerja' WHERE id_user='$id'");
+       $this->db->query("UPDATE user SET nama_lengkap='$nama_lengkap', id_jenis_kelamin='$id_jenis_kelamin', email='$email', no_telp='$no_telp', nip='$nip', masa_kerja='$masa_kerja', jabatan='$jabatan', unit_kerja='$unit_kerja' WHERE id_user='$id'");
 
        $this->db->trans_complete();
        return $this->db->trans_status();
@@ -140,6 +140,12 @@ class M_user extends CI_Model
 
        $this->db->trans_complete();
        return $this->db->trans_status();
+    }
+
+    public function update_user_photo($id_user, $profile_picture) {
+        $this->db->set('profile_picture', $profile_picture);
+        $this->db->where('id_user', $id_user);
+        return $this->db->update('users');
     }
 
 }

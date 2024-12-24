@@ -28,9 +28,9 @@
                             </nav>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary" id="ajukanIzinButton">
+                            <a href="<?php echo base_url('Form_izin/view_sekretariat'); ?>" class="btn btn-primary">
                                 Ajukan Izin
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -46,11 +46,11 @@
                                 <tr>
                                     <th class="table-plus datatable-nosort">No</th>
                                     <th>Tanggal Diajukan</th>
-                                    <th>Nama Lengkap</th>
+                                    <th>Status Ajuan</th>
+                                    <!-- <th>Nama Lengkap</th> -->
                                     <th>Alasan</th>
                                     <th>Mulai</th>
                                     <th>Berakhir</th>
-                                    <th>Status Izin</th>
                                     <th>Cetak Surat</th>
                                     <th class="datatable-nosort">Aksi</th>
                                 </tr>
@@ -63,28 +63,29 @@
                                     $id_izin = $i['id_izin'];
                                     $id_user = $i['id_user'];
                                     $tgl_diajukan = $i['tgl_diajukan'];
-                                    $nama_lengkap = $i['nama_lengkap'];
+                                    $id_status_izin = $i['id_status_izin'];
+                                    // $nama_lengkap = $i['nama_lengkap'];
                                     $alasan = $i['alasan'];
                                     $mulai = $i['mulai'];
                                     $berakhir = $i['berakhir'];
-                                    $id_status_izin = $i['id_status_izin'];
                                 ?>
                                 <tr>
                                     <td class="table-plus"><?= $no ?></td>
                                     <td><?= $tgl_diajukan ?></td>
-                                    <td><?= $nama_lengkap ?></td>
-                                    <td><?= $alasan ?></td>
-                                    <td><?= $mulai ?></td>
-                                    <td><?= $berakhir ?></td>
                                     <td class="table-plus">
                                         <?php if($id_status_izin == 1) { ?>
-                                            <a href="#" class="btn btn-info btn-sm">Menunggu Konfirmasi</a>
+                                            <a href="#" class="btn btn-warning btn-sm">Menunggu Konfirmasi</a>
                                         <?php } elseif($id_status_izin == 2) { ?>
                                             <a href="#" class="btn btn-success btn-sm">Izin Diterima</a>
                                         <?php } elseif($id_status_izin == 3) { ?>
                                             <a href="#" class="btn btn-danger btn-sm">Izin Ditolak</a>
                                         <?php } ?>
                                     </td>
+                                    <!-- <td><?= $nama_lengkap ?></td> -->
+                                    <td><?= $alasan ?></td>
+                                    <td><?= $mulai ?></td>
+                                    <td><?= $berakhir ?></td>
+                                    
                                     <td class="table-plus">
                                         <?php if($id_status_izin == 2) { ?>
                                             <a href="<?= base_url();?>Cetak/surat_izin_pdf/<?=$id_izin?>" class="btn btn-info" target="_blank">Cetak Surat</a>
@@ -205,7 +206,7 @@
                             success: function (response) {
                                 // Jika pengiriman formulir berhasil, arahkan ke WhatsApp
                                 var message = encodeURIComponent("Saya telah mengajukan izin keluar kantor di sistem FrenSIP, mohon untuk ditindak lanjuti");
-                                var phoneNumber = "+6287817889296"; // Nomor telepon dengan kode negara Indonesia
+                                var phoneNumber = "+6281273071000"; // Nomor telepon dengan kode negara Indonesia
                                 var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + message;
                                 window.location.href = whatsappUrl;
                             },

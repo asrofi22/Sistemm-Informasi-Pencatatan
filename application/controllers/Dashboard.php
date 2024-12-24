@@ -99,9 +99,9 @@ class Dashboard extends CI_Controller {
 		if ($this->session->userdata('logged_in') == true AND $this->session->userdata('id_user_level') == 6) {
 
 			$data['logbook_pegawai'] = $this->m_logbook->get_all_logbook_first_by_id_user($this->session->userdata('id_user'))->result_array();
-			$data['logbook'] = $this->m_logbook->count_all_logbook_by_id($this->session->userdata('id_user'))->row_array();
+			$data['logbook'] = $this->m_logbook->count_all_logbook_by_id($this->session->userdata('id_user'));
 			$data['logbookbulanan_pegawai'] = $this->m_logbookbulanan->get_all_logbookbulanan_first_by_id_user($this->session->userdata('id_user'))->result_array();
-			$data['logbookbulanan'] = $this->m_logbookbulanan->count_all_logbookbulanan_by_id($this->session->userdata('id_user'))->row_array();
+			$data['logbookbulanan'] = $this->m_logbookbulanan->count_all_logbookbulanan_by_id($this->session->userdata('id_user'));
 			// $data['cuti_pegawai'] = $this->m_cuti->get_all_cuti_first_by_id_user($this->session->userdata('id_user'))->result_array();
 			// $data['cuti'] = $this->m_cuti->count_all_cuti_by_id($this->session->userdata('id_user'))->row_array();
 			$data['izin_pegawai'] = $this->m_izin->get_all_izin_first_by_id_user($this->session->userdata('id_user'))->result_array();
@@ -195,9 +195,9 @@ class Dashboard extends CI_Controller {
 		if ($this->session->userdata('logged_in') == true AND $this->session->userdata('id_user_level') == 7) {
 
 			$data['logbook_ppnpn'] = $this->m_logbook->get_all_logbook_first_by_id_user($this->session->userdata('id_user'))->result_array();
-			$data['logbook'] = $this->m_logbook->count_all_logbook_by_id($this->session->userdata('id_user'))->row_array();
+			$data['logbook'] = $this->m_logbook->count_all_logbook_by_id($this->session->userdata('id_user'));
 			$data['logbookbulanan_ppnpn'] = $this->m_logbookbulanan->get_all_logbookbulanan_first_by_id_user($this->session->userdata('id_user'))->result_array();
-			$data['logbookbulanan'] = $this->m_logbookbulanan->count_all_logbookbulanan_by_id($this->session->userdata('id_user'))->row_array();
+			$data['logbookbulanan'] = $this->m_logbookbulanan->count_all_logbookbulanan_by_id($this->session->userdata('id_user'));
 			// $data['cuti_pegawai'] = $this->m_cuti->get_all_cuti_first_by_id_user($this->session->userdata('id_user'))->result_array();
 			// $data['cuti'] = $this->m_cuti->count_all_cuti_by_id($this->session->userdata('id_user'))->row_array();
 			$data['izin_ppnpn'] = $this->m_izin->get_all_izin_first_by_id_user($this->session->userdata('id_user'))->result_array();
@@ -231,7 +231,7 @@ class Dashboard extends CI_Controller {
 		if ($this->session->userdata('logged_in') == true AND $this->session->userdata('id_user_level') == 4) {
 
 			// $data['cuti_pegawai'] = $this->m_cuti->get_all_cuti_first_by_id_user($this->session->userdata('id_user'))->result_array();
-			$data['cuti'] = $this->m_cuti->count_all_cuti_by_id($this->session->userdata('id_user'))->row_array();
+			// $data['cuti'] = $this->m_cuti->count_all_cuti_by_id($this->session->userdata('id_user'))->row_array();
 			$data['izin_pegawai'] = $this->m_izin->get_all_izin_first_by_id_user($this->session->userdata('id_user'))->result_array();
 			$data['izin'] = $this->m_izin->count_all_izin_by_id($this->session->userdata('id_user'))->row_array();
 			// $data['perbaikanbmn_pegawai'] = $this->m_perbaikanbmn->get_all_perbaikanbmn_first_by_id_user($this->session->userdata('id_user'))->result_array();

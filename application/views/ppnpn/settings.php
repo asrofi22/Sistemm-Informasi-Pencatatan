@@ -76,7 +76,7 @@
                                 <nav aria-label="breadcrumb" role="navigation">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
-                                            <a href="index.html">Home</a>
+                                            <a href="<?= base_url();?>Dashboard/dashboard_ppnpn">Home</a>
                                         </li>
                                         <li class="breadcrumb-item active" aria-current="page">
                                             Settings
@@ -91,7 +91,7 @@
                     <div class="row">
                         <div class="col-12 mb-30">
                             <div class="pd-20 card-box height-100-p">
-                                <form action="<?= base_url(); ?>Settings/settings_account_pegawai" method="POST">
+                                <form action="<?= base_url(); ?>Settings/settings_account_ppnpn" method="POST">
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" aria-describedby="Username" required>

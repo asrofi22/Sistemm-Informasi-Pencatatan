@@ -69,8 +69,9 @@
 								<img src="<?= base_url();?>assets/images/logbookic.png" alt="Logbook Chart" class="icon-img"/>
 								</div>
 								<div class="widget-data">
-									<div class="h4 mb-0"><?=$logbook['total_logbook']?></div>
-									<div class="weight-600 font-14">Logbook PPNPN</div>
+								<div class="h4 mb-0">Logbook PPNPN</div>
+									<div class="weight-600 font-14">harian | bulanan</div>
+								<!-- </div> -->
 								</div>
 								<!-- <a href="<?=base_url();?>Logbook/view_sekretariat" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a> -->
 							</div>

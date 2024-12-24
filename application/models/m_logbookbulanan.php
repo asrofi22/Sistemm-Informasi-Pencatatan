@@ -90,10 +90,10 @@ class M_logbookbulanan extends CI_Model
         return $this->db->trans_status();
     }
 
-    public function confirm_logbookbulanan($id_log, $id_status_log, $nilai)
+    public function confirm_logbookbulanan($id_log, $id_status_log, $nilai, $verifikasi)
     {
         $this->db->trans_start();
-        $this->db->query("UPDATE logbookbulanan SET id_status_log='$id_status_log', nilai='$nilai' WHERE id_log='$id_log'");
+        $this->db->query("UPDATE logbookbulanan SET id_status_log='$id_status_log', nilai='$nilai', verifikasi='$verifikasi' WHERE id_log='$id_log'");
         $this->db->trans_complete();
         if ($this->db->trans_status() == true)
             return true;

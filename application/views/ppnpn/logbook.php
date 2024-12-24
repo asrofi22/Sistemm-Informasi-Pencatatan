@@ -40,9 +40,11 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Data Logbook Harian PPNPN</h4>
-                        <button type="button" class="btn btn-sm btn-primary" id="ajukanLogbookharianButton" data-toggle="modal" data-target="#formLogbookharianModal">
-                            Tambah Logbook
-                        </button>
+                        <!-- <div class="col-md-6 col-sm-12 text-right"> -->
+                            <a href="<?php echo base_url('Form_logbook/view_ppnpn'); ?>" class="btn btn-primary">
+                                Tambah Logbook
+                            </a>
+                        <!-- </div> -->
                     </div>
                     <div class="pb-20">
                         <table class="data-table table stripe hover nowrap">
@@ -258,9 +260,6 @@
                         responsive: true
                     });
 
-                    $('#ajukanLogbookharianButton').click(function () {
-                        $('#formLogbookharianModal').modal('show');
-                    });
                 });
             </script>
         </div>

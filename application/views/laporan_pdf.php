@@ -5,51 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Izin Keluar Kantor</title>
+    <style>
+        .signature {
+                float: right;
+                width: 200px;
+                height: auto;
+                margin-right: 50px;
+        }
+        .signature-name {
+                text-align: right;
+                font-family: 'Times New Roman', serif;
+                font-size: 12pt;
+                margin-top: 10px;
+                margin-right: 50px;
+        }
+        </style>
+
 </head>
 
 <body>
     <?php
-function tgl_indo($tanggal){
-	$bulan = array (
-		1 =>   'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-	);
-	$pecahkan = explode('-', $tanggal);
- 
-	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-}
-?>
+    function tgl_indo($tanggal){
+        $bulan = array (
+            1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        $pecahkan = explode('-', $tanggal);
+
+        return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+    }
+    ?>
 
     <?php
 
-        $id = 0;
-        foreach($izin as $i)
-        :
-        $id++;
-        $id_izin = $i['id_izin'];
-        $id_user = $i['id_user'];
-        $nama_lengkap = $i['nama_lengkap'];
-        $alasan = $i['alasan'];
-        $nip = $i['nip'];
-        $masa_kerja = $i['masa_kerja'];
-        $jabatan = $i['jabatan'];
-        $perihal_izin = $i['perihal_izin'];
-        $tgl_diajukan = $i['tgl_diajukan'];
-        $mulai = date('H:i', strtotime($i['mulai']));
-        $berakhir = date('H:i', strtotime($i['berakhir']));
-        $id_status_izin = $i['id_status_izin'];
+    $id = 0;
+    foreach($izin as $i)
+    :
+    $id++;
+    $id_izin = $i['id_izin'];
+    $id_user = $i['id_user'];
+    $nama_lengkap = $i['nama_lengkap'];
+    $alasan = $i['alasan'];
+    $nip = $i['nip'];
+    $masa_kerja = $i['masa_kerja'];
+    $jabatan = $i['jabatan'];
+    $perihal_izin = $i['perihal_izin'];
+    $tgl_diajukan = $i['tgl_diajukan'];
+    $mulai = date('H:i', strtotime($i['mulai']));
+    $berakhir = date('H:i', strtotime($i['berakhir']));
+    $id_status_izin = $i['id_status_izin'];
 
-        ?>
+    ?>
 
     <?php $diff = abs(strtotime($mulai) - strtotime($berakhir));
     $years = floor($diff / (365*60*60*24));
@@ -58,17 +74,17 @@ function tgl_indo($tanggal){
     ?>
     <p style="margin-top: -60px; margin-left: -40px; margin-bottom:0pt; text-align:center; line-height:150%; font-size:12pt;"><span
             style="height:0pt; text-align:left; display:block; position:absolute; z-index:-1;"><img
-            src="<?= base_url();?>assets/images/kopsurat.jpg" class="img-circle elevation-2"
-                    alt="User Image">
-                </span> <br><br><br><br><br><br><br><br>
-                <!-- <strong><span
+                src="<?= base_url();?>assets/images/kopsurat.jpg" class="img-circle elevation-2"
+                alt="User Image">
+            </span> <br><br><br><br><br><br><br><br>
+            <!-- <strong><span
                 style="font-family:'Times New Roman';">KEMENTERIAN PERTANIAN</span></strong> -->
         </p>
     <!-- <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:150%; font-size:12pt;"><strong><span
                 style="font-family:'Times New Roman';">BALAI PENERAPAN STANDAR INSTRUMEN PERTANIAN JAMBI</span></strong></p>
-    <p style="margin-top:0pt; margin-bottom:15pt; text-align:center; line-height:150%;"><span
-            style="font-family:Arial;">Jl. Samarinda, Paal IV, Kec. Kota Baru, Kota Jambi, Jambi 36129</span></p>
-    <hr> -->
+        <p style="margin-top:0pt; margin-bottom:15pt; text-align:center; line-height:150%;"><span
+                style="font-family:Arial;">Jl. Samarinda, Paal IV, Kec. Kota Baru, Kota Jambi, Jambi 36129</span></p>
+        <hr> -->
     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:150%; font-size:12pt;"><strong><u><span
                 style="font-family:'Times New Roman';">SURAT IZIN KELUAR KANTOR</span></strong></u></p>
     <p style="margin-top:0pt; margin-bottom:0pt; line-height:150%;"><span
@@ -145,7 +161,16 @@ function tgl_indo($tanggal){
             style="width:36pt; display:inline-block;">&nbsp;</span><span
             style="font-family:'Times New Roman';">&nbsp;Demikian surat ini dibuat, agar
                 dipergunakan sebagaimana mestinya.</span></p>
-                
+
+    <!-- Menambahkan gambar tanda tangan -->
+    <br><br><br><br>
+    <img src="<?= base_url();?>assets/images/ttdpakyong.jpg" class="signature" alt="TTD">
+    <br><br><br><br><br><br><br><br>
+        <p class="signature-name">
+        <span style="font-family:'Times New Roman';">Yong Farmanta, S.P., M.Si.</span>
+        </p>
+
+
     <?php endforeach; ?>
 
 </body>
