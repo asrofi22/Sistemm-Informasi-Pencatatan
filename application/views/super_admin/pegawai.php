@@ -34,26 +34,9 @@ $jenis_kelamin_labels = array(
 <head>
 <?php $this->load->view("super_admin/components/header.php") ?>
 
-    <!-- <link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/styles/core.css"/>
-    <link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/styles/icon-font.min.css"/>
-    <link rel="stylesheet" type="text/css" href="<?=base_url();?>src/plugins/datatables/css/dataTables.bootstrap4.min.css"/>
-    <link rel="stylesheet" type="text/css" href="<?=base_url();?>src/plugins/datatables/css/responsive.bootstrap4.min.css"/>
-    <link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/styles/style.css"/>
-    <style>
-        .full-width-table {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        .full-width-table th, .full-width-table td {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style> -->
+    
 </head>
 <body>
-    <!-- Your Navbar and Sidebar Components -->
     <?php $this->load->view("super_admin/components/navbar.php") ?>
     <?php $this->load->view("super_admin/components/sidebar.php") ?>
 
