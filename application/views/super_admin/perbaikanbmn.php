@@ -70,7 +70,6 @@
                             <th>Spesifikasi</th>
                             <th>Lokasi Barang</th>
                             <th>Kerusakan</th>
-                            <!-- <th>Tanggal Diajukan</th> -->
                             <th>Alasan Verifikasi</th>
                             <th>Status Perbaikan</th>
                             <th>Estimasi</th>

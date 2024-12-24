@@ -55,7 +55,6 @@
 
     <!-- Navbar -->
     <?php $this->load->view("super_admin/components/navbar.php") ?>
-    <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <?php $this->load->view("super_admin/components/sidebar.php") ?>
